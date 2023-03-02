@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   },
   container_tertiary: {
     width: "100%",
-    backgroundColor: "#FFFFFF"
   },
   text: {
     fontFamily: "Gilroy",
