@@ -1,5 +1,6 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import React from "react";
+import Constants from "../utils/Constants"
 
 const CustomInput = ({ value, setValue, placeholder, secure }) => {
   return (
@@ -22,7 +23,8 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 20,
-    borderBottomColor: "grey",
+    color: Constants.tertiaryColor,
+    borderBottomColor: Constants.tertiaryColor,
     borderBottomWidth: 2,
   },
 });

@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
+import Constants from '../utils/Constants'
 
 const CustomButton = ({ onPress, text, type }) => {
   return (
-    <Pressable onPress={onPress} style={[styles.container, styles[`container_${type}`]]}>
+    <Pressable onPress={onPress} style={[styles.container, styles[`container${type}`]]}>
       <Text style={[styles.text, styles[`text_${type}`]]}>{text}</Text>
     </Pressable>
   )
@@ -11,27 +12,27 @@ const CustomButton = ({ onPress, text, type }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
+    width: 200,
     padding: 15,
     marginVertical: 15,
     alignItems: 'center',
     borderRadius: 25,
   }, 
-  container_primary: {
-    backgroundColor: "#FFD233",
+  containerPrimary: {
+    backgroundColor: Constants.primaryColor,
   },
-  container_secondary: {
+  containerSecondary: {
     backgroundColor: "#FFFFFF"
   },
-  container_tertiary: {
+  containerTertiary: {
     width: "100%",
   },
   text: {
     fontFamily: "Gilroy",
     fontSize: 18
   },
-  text_tertiary: {
-    color: "grey",
+  textTertiary: {
+    color: Constants.tertiaryColor,
     textDecorationLine: 'underline',
     fontFamily: "Gilroy"
   }
