@@ -6,14 +6,15 @@ import { POSTER_IMAGE_URL } from "../config/config";
 import Constants from "../utils/Constants";
 import { getRequest } from "../api/api";
 import Rating from "./Rating"
+import CustomButton from "./CustomButton"
 
-const PopularSeries = (props) => {
+const RecommendedSeries = (props) => {
   const [loading, setLoading] = useState(true);
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
     const getSeries = async () => {
-      const data = await getRequest("/tv/popular");
+      const data = await getRequest("/tv/top_rated");
       setSeries(data.results);
       setLoading(false);
     };
@@ -22,38 +23,49 @@ const PopularSeries = (props) => {
   }, []);
 
   return (
-    <View>
+<View>
       {loading ? (
         <Loader />
       ) : (
         <View>
-          <Text style={styles.heading}>Popular</Text>
+          <Text style={styles.heading}>Recommendations</Text>
           <FlatList
             keyExtractor={(item) => item.id}
             data={series}
-            horizontal
+            vertical
             renderItem={(item) => serieCard(item, props)}
           />
-          <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-            <Text style={styles.moreText}>See All</Text>
-          </View>
         </View>
       )}
     </View>
-  );
-};
+  )
+}
 
 const serieCard = ({ item }, props) => {
   return (
-    <View style={{ marginHorizontal: 10 }}>
+    <View style={styles.infoCard}>
       <Image source={{ uri: `${POSTER_IMAGE_URL}${item.poster_path}` }} style={styles.posterImage} />
-      <Text style={styles.title}>{item.name}</Text>
-      <Rating rating={item.vote_average} />
+      <View style={styles.textInfo}>
+        <Text style={styles.title}>{item.name}</Text>
+        <Rating rating={item.vote_average} />
+        <Text style={styles.info}>IMDb: {item.vote_average}</Text>
+        <CustomButton text="Watch Now" type="Primary" />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  infoCard: {
+    overflow: 'hidden',
+    flexDirection: 'row',
+    margin: 10,
+  },
+  textInfo: {
+    justifyContent: 'space-evenly',
+    alignItems: 'left',
+    padding: 20,
+  },
   posterImage: {
     height: 250,
     width: 150,
@@ -66,20 +78,16 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   title: {
-    fontSize: 15,
+    fontSize: 18,
     color: Constants.primaryText,
     fontFamily: "GilroyBold",
-    textAlign: "left",
     width: 150,
     marginTop: 10,
-    marginBottom: 10,
   },
-  moreText: {
-    fontSize: 20,
+  info: {
+    color: Constants.tertiaryColor,
     fontFamily: "Gilroy",
-    color: Constants.primaryColor,
-    margin: 20,
-  },
+  }
 });
 
-export default PopularSeries;
+export default RecommendedSeries
