@@ -47,7 +47,7 @@ const showCard = ({ item }, props) => {
     <TouchableOpacity
       style={styles.infoCard}
       onPress={() => {
-        props.navigation.navigate("Show", { movieId: item.id });
+        props.navigation.navigate("Show", { showId: item.id });
       }}
     >
       <Image source={{ uri: `${POSTER_IMAGE_URL}${item.poster_path}` }} style={styles.posterImage} />
