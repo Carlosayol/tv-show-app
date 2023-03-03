@@ -1,24 +1,24 @@
-import { View, Text, FlatList, Image, StyleSheet } from "react-native";
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 
 import Loader from "./Loader";
 import { POSTER_IMAGE_URL } from "../config/config";
 import Constants from "../utils/Constants";
 import { getRequest } from "../api/api";
-import Rating from "./Rating"
+import Rating from "./Rating";
 
-const PopularSeries = (props) => {
+const PopularShows = (props) => {
   const [loading, setLoading] = useState(true);
-  const [series, setSeries] = useState([]);
+  const [shows, setShows] = useState([]);
 
   useEffect(() => {
-    const getSeries = async () => {
+    const getShows = async () => {
       const data = await getRequest("/tv/popular");
-      setSeries(data.results);
+      setShows(data.results);
       setLoading(false);
     };
 
-    getSeries();
+    getShows();
   }, []);
 
   return (
@@ -30,9 +30,9 @@ const PopularSeries = (props) => {
           <Text style={styles.heading}>Popular</Text>
           <FlatList
             keyExtractor={(item) => item.id}
-            data={series}
+            data={shows}
             horizontal
-            renderItem={(item) => serieCard(item, props)}
+            renderItem={(item) => showCard(item, props)}
           />
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
             <Text style={styles.moreText}>See All</Text>
@@ -43,13 +43,18 @@ const PopularSeries = (props) => {
   );
 };
 
-const serieCard = ({ item }, props) => {
+const showCard = ({ item }, props) => {
   return (
-    <View style={{ marginHorizontal: 10 }}>
+    <TouchableOpacity
+      onPress={() => {
+        props.navigation.navigate("Show", { movieId: item.id });
+      }}
+      style={{ marginHorizontal: 10 }}
+    >
       <Image source={{ uri: `${POSTER_IMAGE_URL}${item.poster_path}` }} style={styles.posterImage} />
       <Text style={styles.title}>{item.name}</Text>
       <Rating rating={item.vote_average} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -82,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PopularSeries;
+export default PopularShows;

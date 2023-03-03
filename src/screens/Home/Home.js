@@ -1,4 +1,4 @@
-import { Dimensions, View, Text, StyleSheet } from 'react-native'
+import { Dimensions, View, StyleSheet } from 'react-native'
 import React from 'react'
 import Constants from '../../utils/Constants'
 import PopularSeries from '../../components/Popular'
@@ -6,11 +6,11 @@ import RecommendedSeries from '../../components/Recommended'
 
 const deviceHeight = Dimensions.get('window').height;
 
-const Home = () => {
+const Home = (props) => {
   return (
     <View style={styles.container}>
-      <PopularSeries />
-      <RecommendedSeries />
+      <PopularSeries navigation={props.navigation} />
+      <RecommendedSeries navigation={props.navigation} />
     </View>
   )
 }

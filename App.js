@@ -7,6 +7,7 @@ import { Octicons } from "@expo/vector-icons";
 import Welcome from "./src/screens/Welcome";
 import Home from "./src/screens/Home";
 import Constants from "./src/utils/Constants";
+import Show from "./src/components/Show";
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,25 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
         <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={Home} options={headerStyle} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            ...headerStyle,
+            headerLeft: () => null,
+            headerRight: () => (
+              <Octicons name="gear" size={24} color={Constants.tertiaryColor} style={{ paddingRight: 20 }} />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Show"
+          component={Show}
+          options={{
+            ...headerStyle,
+            headerTitle: ""
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -32,15 +51,6 @@ const headerStyle = {
   headerStyle: { backgroundColor: Constants.secondaryColor },
   headerShadowVisible: false,
   headerTitleStyle: { color: "#FFFFFF", fontFamily: "Gilroy" },
-  headerLeft: () => null,
-  headerRight: () => (
-    <Octicons
-      name="gear"
-      size={24}
-      color={Constants.tertiaryColor}
-      style={{ paddingRight: 20 }}
-    />
-  ),
 };
 
 const style = StyleSheet.create({

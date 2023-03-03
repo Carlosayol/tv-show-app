@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, StyleSheet } from "react-native";
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 
 import Loader from "./Loader";
@@ -8,18 +8,18 @@ import { getRequest } from "../api/api";
 import Rating from "./Rating"
 import CustomButton from "./CustomButton"
 
-const RecommendedSeries = (props) => {
+const RecommendedShows = (props) => {
   const [loading, setLoading] = useState(true);
-  const [series, setSeries] = useState([]);
+  const [shows, setShows] = useState([]);
 
   useEffect(() => {
-    const getSeries = async () => {
+    const getshows = async () => {
       const data = await getRequest("/tv/top_rated");
-      setSeries(data.results);
+      setShows(data.results);
       setLoading(false);
     };
 
-    getSeries();
+    getshows();
   }, []);
 
   return (
@@ -31,9 +31,9 @@ const RecommendedSeries = (props) => {
           <Text style={styles.heading}>Recommendations</Text>
           <FlatList
             keyExtractor={(item) => item.id}
-            data={series}
+            data={shows}
             vertical
-            renderItem={(item) => serieCard(item, props)}
+            renderItem={(item) => showCard(item, props)}
           />
         </View>
       )}
@@ -41,9 +41,11 @@ const RecommendedSeries = (props) => {
   )
 }
 
-const serieCard = ({ item }, props) => {
+const showCard = ({ item }, props) => {
   return (
-    <View style={styles.infoCard}>
+    <TouchableOpacity style={styles.infoCard}       onPress={() => {
+      props.navigation.navigate("Show", { movieId: item.id });
+    }}>
       <Image source={{ uri: `${POSTER_IMAGE_URL}${item.poster_path}` }} style={styles.posterImage} />
       <View style={styles.textInfo}>
         <Text style={styles.title}>{item.name}</Text>
@@ -51,7 +53,7 @@ const serieCard = ({ item }, props) => {
         <Text style={styles.info}>IMDb: {item.vote_average}</Text>
         <CustomButton text="Watch Now" type="Primary" />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -90,4 +92,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecommendedSeries
+export default RecommendedShows
