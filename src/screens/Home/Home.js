@@ -1,5 +1,6 @@
 import { Dimensions, View, StyleSheet } from 'react-native'
 import React from 'react'
+
 import Constants from '../../utils/Constants'
 import PopularSeries from '../../components/Popular'
 import RecommendedSeries from '../../components/Recommended'

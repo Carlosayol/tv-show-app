@@ -2,12 +2,12 @@ import { View, StyleSheet, Dimensions, Image, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import Loader from "./Loader";
-import { POSTER_IMAGE_URL_BG } from "../config/config";
-import Constants from "../utils/Constants";
-import { getRequest } from "../api/api";
-import Rating from "./Rating";
-import CustomButton from "./CustomButton";
+import { POSTER_IMAGE_URL_BG } from "../../config/config";
+import Constants from "../../utils/Constants";
+import { getRequest } from "../../api/api";
+import Rating from "../../components/Rating";
+import CustomButton from "../../components/CustomButton";
+import Loader from "../../components/Loader";
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -47,7 +47,13 @@ const Show = (props) => {
           <Text style={styles.heading}>{detail.name}</Text>
           <Rating rating={detail.vote_average} />
           <Text style={styles.info}>IMDb: {detail.vote_average}</Text>
-          <CustomButton text="Watch Now" type="Primary" />
+          <CustomButton
+            onPress={() => {
+              props.navigation.navigate("ShowDetail", { showId: detail.id });
+            }}
+            text="Watch Now"
+            type="Primary"
+          />
         </View>
       )}
     </View>

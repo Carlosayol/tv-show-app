@@ -5,8 +5,8 @@ import Loader from "./Loader";
 import { POSTER_IMAGE_URL } from "../config/config";
 import Constants from "../utils/Constants";
 import { getRequest } from "../api/api";
-import Rating from "./Rating"
-import CustomButton from "./CustomButton"
+import Rating from "./Rating";
+import CustomButton from "./CustomButton";
 
 const RecommendedShows = (props) => {
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const RecommendedShows = (props) => {
   }, []);
 
   return (
-<View>
+    <View>
       {loading ? (
         <Loader />
       ) : (
@@ -38,14 +38,17 @@ const RecommendedShows = (props) => {
         </View>
       )}
     </View>
-  )
-}
+  );
+};
 
 const showCard = ({ item }, props) => {
   return (
-    <TouchableOpacity style={styles.infoCard}       onPress={() => {
-      props.navigation.navigate("Show", { movieId: item.id });
-    }}>
+    <TouchableOpacity
+      style={styles.infoCard}
+      onPress={() => {
+        props.navigation.navigate("Show", { movieId: item.id });
+      }}
+    >
       <Image source={{ uri: `${POSTER_IMAGE_URL}${item.poster_path}` }} style={styles.posterImage} />
       <View style={styles.textInfo}>
         <Text style={styles.title}>{item.name}</Text>
@@ -59,13 +62,13 @@ const showCard = ({ item }, props) => {
 
 const styles = StyleSheet.create({
   infoCard: {
-    overflow: 'hidden',
-    flexDirection: 'row',
+    overflow: "hidden",
+    flexDirection: "row",
     margin: 10,
   },
   textInfo: {
-    justifyContent: 'space-evenly',
-    alignItems: 'left',
+    justifyContent: "space-evenly",
+    alignItems: "left",
     padding: 20,
   },
   posterImage: {
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
   info: {
     color: Constants.tertiaryColor,
     fontFamily: "Gilroy",
-  }
+  },
 });
 
-export default RecommendedShows
+export default RecommendedShows;

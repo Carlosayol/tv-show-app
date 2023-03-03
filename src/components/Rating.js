@@ -10,11 +10,11 @@ const Rating = ({ rating }) => {
   while (i <= 5) {
     if (i <= ratingStars) {
       stars.push(
-        <MaterialIcons name="star" size={16} style={{color: Constants.tertiaryColor}} />
+        <MaterialIcons key={i} name="star" size={16} style={{color: Constants.tertiaryColor}} />
       );
     } else { 
       stars.push(
-        <MaterialIcons name="star-border" size={16} style={{color: Constants.tertiaryColor}} />
+        <MaterialIcons key={i} name="star-border" size={16} style={{color: Constants.tertiaryColor}} />
       );
     }
 
