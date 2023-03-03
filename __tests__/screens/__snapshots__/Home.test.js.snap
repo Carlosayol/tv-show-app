@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Screen renders correctly 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#191919",
+      "flex": 1,
+      "height": 1334,
+    }
+  }
+>
+  <View>
+    <ActivityIndicator
+      color="#FFFFFF"
+      size="large"
+    />
+  </View>
+  <View>
+    <ActivityIndicator
+      color="#FFFFFF"
+      size="large"
+    />
+  </View>
+</View>
+`;
