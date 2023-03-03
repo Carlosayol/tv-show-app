@@ -18,7 +18,7 @@ const Show = (props) => {
 
   useEffect(() => {
     const getShowDetails = async () => {
-      const data = await getRequest(`/tv/${params.movieId}`);
+      const data = await getRequest(`/tv/${params.showId}`);
       setDetail(data);
       setLoading(false);
     };

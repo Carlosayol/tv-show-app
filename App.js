@@ -1,12 +1,13 @@
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { useFonts } from "expo-font";
 import { Octicons } from "@expo/vector-icons";
 
 import Welcome from "./src/screens/Welcome";
 import Show from "./src/screens/Show";
 import ShowDetail from "./src/screens/ShowDetail";
+import RecentDetail from "./src/screens/RecentDetail";
 import Constants from "./src/utils/Constants";
 import TabNavigator from "./src/navigation/TabNavigator";
 
@@ -18,22 +19,36 @@ export default function App() {
     GilroyBold: require("./assets/fonts/Gilroy-ExtraBold.otf"),
   });
 
+  const getHeaderTitle = (route) => {
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home"
+
+    switch (routeName) {
+      case "Home":
+        return "Home";
+      case "Favorites":
+        return "Favorites";
+      case "Recent":
+        return "Recent";
+    }
+  };
+
   if (!fontsLoaded) return null;
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerTitleAlign: "center" }}>
+      <Stack.Navigator screenOptions={{ headerTitleAlign: "center", headerTintColor: Constants.primaryText }}>
         <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
         <Stack.Screen
           name="Home"
           component={TabNavigator}
-          options={{
+          options={({ route }) => ({
             ...headerStyle,
             headerLeft: () => null,
             headerRight: () => (
               <Octicons name="gear" size={24} color={Constants.tertiaryColor} style={{ paddingRight: 20 }} />
             ),
-          }}
+            headerTitle: getHeaderTitle(route),
+          })}
         />
         <Stack.Screen
           name="Show"
@@ -54,6 +69,17 @@ export default function App() {
             ),
           }}
         />
+        <Stack.Screen
+          name="RecentDetail"
+          component={RecentDetail}
+          options={{
+            ...headerStyle,
+            headerTitle: "",
+            headerRight: () => (
+              <Octicons name="gear" size={24} color={Constants.tertiaryColor} style={{ paddingRight: 20 }} />
+            ),
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -62,7 +88,6 @@ export default function App() {
 const headerStyle = {
   headerStyle: { backgroundColor: Constants.secondaryColor },
   headerShadowVisible: false,
-  headerTitleStyle: { color: "#FFFFFF", fontFamily: "Gilroy" },
+  headerTitleStyle: { color: Constants.primaryText, fontFamily: "Gilroy" },
 };
-
 

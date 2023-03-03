@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Dimensions, FlatList, Image } from "react-native";
 import React, { useEffect, useState } from "react";
+
 import { getRequest } from "../../api/api";
 import Constants from "../../utils/Constants";
 import Loader from "../../components/Loader";
@@ -51,7 +52,7 @@ const favoriteCard = ({ item }, props) => {
           text="Watch Now"
           type="Primary"
           onPress={() => {
-            props.navigation.navigate("Show", { movieId: item.id });
+            props.navigation.navigate("Show", { showId: item.id });
           }}
         />
       </View>
