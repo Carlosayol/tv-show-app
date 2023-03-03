@@ -1,11 +1,11 @@
-import { Dimensions, View, StyleSheet } from 'react-native'
-import React from 'react'
+import { Dimensions, View, StyleSheet } from "react-native";
+import React from "react";
 
-import Constants from '../../utils/Constants'
-import PopularSeries from '../../components/Popular'
-import RecommendedSeries from '../../components/Recommended'
+import Constants from "../../utils/Constants";
+import PopularSeries from "../../components/Popular";
+import RecommendedSeries from "../../components/Recommended";
 
-const deviceHeight = Dimensions.get('window').height;
+const deviceHeight = Dimensions.get("window").height;
 
 const Home = (props) => {
   return (
@@ -13,8 +13,8 @@ const Home = (props) => {
       <PopularSeries navigation={props.navigation} />
       <RecommendedSeries navigation={props.navigation} />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home
+export default Home;

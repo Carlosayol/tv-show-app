@@ -47,13 +47,13 @@ const episodeCard = ({ item }, poster_path) => {
     <View style={styles.card}>
       <Text style={styles.title}>{item.episode_number} Episode</Text>
       <View style={{ position: "relative" }}>
-      <Image source={{ uri: `${POSTER_IMAGE_URL_B}${poster_path}` }} style={styles.posterImage} />
-      <MaterialIcons
-                name="play-circle-fill"
-                size={80}
-                color={Constants.primaryColor}
-                style={{ position: "absolute", top: "33%", left: "40%" }}
-              />
+        <Image source={{ uri: `${POSTER_IMAGE_URL_B}${poster_path}` }} style={styles.posterImage} />
+        <MaterialIcons
+          name="play-circle-fill"
+          size={80}
+          color={Constants.primaryColor}
+          style={{ position: "absolute", top: "33%", left: "40%" }}
+        />
       </View>
     </View>
   );

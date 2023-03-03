@@ -1,10 +1,10 @@
-import { View, Text, Dimensions, StyleSheet, FlatList } from 'react-native'
+import { View, Text, Dimensions, StyleSheet, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 
 import { getRequest } from "../../api/api";
-import Loader from '../../components/Loader'
-import Constants from '../../utils/Constants'
-import Episode from '../../components/Episode'
+import Loader from "../../components/Loader";
+import Constants from "../../utils/Constants";
+import Episode from "../../components/Episode";
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -29,19 +29,17 @@ const ShowDetail = (props) => {
         <Loader />
       ) : (
         <FlatList
-            keyExtractor={(item) => item.id}
-            data={season.episodes}
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            renderItem={(item) => (
-              <Episode ep={item} poster_path={season.poster_path}/>
-            )}
-          />
+          keyExtractor={(item) => item.id}
+          data={season.episodes}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          renderItem={(item) => <Episode ep={item} poster_path={season.poster_path} />}
+        />
       )}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     height: deviceHeight,
     justifyContent: "center",
     alignItems: "center",
-  }
+  },
 });
 
-export default ShowDetail
+export default ShowDetail;

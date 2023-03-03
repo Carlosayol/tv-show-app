@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Octicons } from "@expo/vector-icons";
 
@@ -20,7 +20,7 @@ export default function App() {
   });
 
   const getHeaderTitle = (route) => {
-    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home"
+    const routeName = getFocusedRouteNameFromRoute(route) ?? "Home";
 
     switch (routeName) {
       case "Home":
