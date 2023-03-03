@@ -33,6 +33,7 @@ const ShowDetail = (props) => {
             data={season.episodes}
             horizontal
             pagingEnabled
+            showsHorizontalScrollIndicator={false}
             renderItem={(item) => (
               <Episode ep={item} poster_path={season.poster_path}/>
             )}

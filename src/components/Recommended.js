@@ -33,6 +33,7 @@ const RecommendedShows = (props) => {
             keyExtractor={(item) => item.id}
             data={shows}
             vertical
+            showsVerticalScrollIndicator={false}
             renderItem={(item) => showCard(item, props)}
           />
         </View>

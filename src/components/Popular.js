@@ -32,6 +32,7 @@ const PopularShows = (props) => {
             keyExtractor={(item) => item.id}
             data={shows}
             horizontal
+            showsHorizontalScrollIndicator={false}
             renderItem={(item) => showCard(item, props)}
           />
           <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
@@ -47,7 +48,7 @@ const showCard = ({ item }, props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.navigate("Show", { movieId: item.id });
+        props.navigation.navigate("Show", { showId: item.id });
       }}
       style={{ marginHorizontal: 10 }}
     >

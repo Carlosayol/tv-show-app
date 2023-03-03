@@ -32,6 +32,7 @@ const Recents = (props) => {
           keyExtractor={(item) => item.id}
           data={recents}
           vertical
+          showsVerticalScrollIndicator={false}
           renderItem={(item) => recentCard(item, props)}
         />
       )}
@@ -46,9 +47,14 @@ const recentCard = ({ item }, props) => {
       <Text style={styles.heading}>{item.name}</Text>
       <Rating rating={item.vote_average} />
       <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-end" }}>
-        <Text style={styles.moreText} onPress={() => {
-            props.navigation.navigate("RecentDetail", { showId: item.id });
-          }}>Go to view &gt;</Text>
+        <Text
+          style={styles.moreText}
+          onPress={() => {
+            props.navigation.navigate("RecentDetail", { showId: item.id, poster_path: item.poster_path });
+          }}
+        >
+          Go to view &gt;
+        </Text>
       </View>
     </View>
   );

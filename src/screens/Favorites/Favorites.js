@@ -33,6 +33,7 @@ const Favorites = (props) => {
           keyExtractor={(item) => item.id}
           data={favorites}
           vertical
+          showsVerticalScrollIndicator={false}
           renderItem={(item) => favoriteCard(item, props)}
         />
       )}
