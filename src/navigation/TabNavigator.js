@@ -14,7 +14,13 @@ const TabNavigator = () => {
   };
 
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: Constants.secondaryColor } }}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Constants.primaryColor,
+        tabBarStyle: { backgroundColor: Constants.secondaryColor },
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
@@ -41,6 +47,11 @@ const TabNavigator = () => {
         component={SearchButton}
         options={{
           tabBarIcon: () => <Octicons name="search" size={24} color={Constants.primaryText} />,
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault(); // — > the main part
+          },
         }}
       />
     </Tab.Navigator>

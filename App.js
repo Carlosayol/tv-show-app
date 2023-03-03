@@ -2,14 +2,13 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useFonts } from "expo-font";
-import { Octicons  } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 
 import Welcome from "./src/screens/Welcome";
-import Home from "./src/screens/Home";
 import Show from "./src/screens/Show";
-import ShowDetail from "./src/screens/ShowDetail"
+import ShowDetail from "./src/screens/ShowDetail";
 import Constants from "./src/utils/Constants";
-import TabNavigator from "./src/navigation/TabNavigator"
+import TabNavigator from "./src/navigation/TabNavigator";
 
 const Stack = createStackNavigator();
 
@@ -41,7 +40,7 @@ export default function App() {
           component={Show}
           options={{
             ...headerStyle,
-            headerTitle: ""
+            headerTitle: "",
           }}
         />
         <Stack.Screen
@@ -52,7 +51,7 @@ export default function App() {
             headerTitle: "",
             headerRight: () => (
               <Octicons name="heart" size={24} color={Constants.tertiaryColor} style={{ paddingRight: 20 }} />
-            )
+            ),
           }}
         />
       </Stack.Navigator>
@@ -66,12 +65,4 @@ const headerStyle = {
   headerTitleStyle: { color: "#FFFFFF", fontFamily: "Gilroy" },
 };
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#e8e8e8",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
