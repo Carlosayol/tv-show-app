@@ -22,7 +22,7 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="Home "
         component={Home}
         options={{
           tabBarIcon: () => <Octicons name="home" size={24} color={Constants.primaryText} />,

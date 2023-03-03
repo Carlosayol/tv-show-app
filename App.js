@@ -41,11 +41,17 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={TabNavigator}
-          options={({ route }) => ({
+          options={({ route, navigation }) => ({
             ...headerStyle,
             headerLeft: () => null,
             headerRight: () => (
-              <Octicons name="gear" size={24} color={Constants.tertiaryColor} style={{ paddingRight: 20 }} />
+              <Octicons
+                name="gear"
+                size={24}
+                color={Constants.tertiaryColor}
+                style={{ paddingRight: 20 }}
+                onPress={() => navigation.navigate("Welcome")}
+              />
             ),
             headerTitle: getHeaderTitle(route),
           })}
@@ -72,13 +78,19 @@ export default function App() {
         <Stack.Screen
           name="RecentDetail"
           component={RecentDetail}
-          options={{
+          options={({ route, navigation }) => ({
             ...headerStyle,
             headerTitle: "",
             headerRight: () => (
-              <Octicons name="gear" size={24} color={Constants.tertiaryColor} style={{ paddingRight: 20 }} />
+              <Octicons
+                name="gear"
+                size={24}
+                color={Constants.tertiaryColor}
+                style={{ paddingRight: 20 }}
+                onPress={() => navigation.navigate("Welcome")}
+              />
             ),
-          }}
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>
