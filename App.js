@@ -9,6 +9,7 @@ import Home from "./src/screens/Home";
 import Show from "./src/screens/Show";
 import ShowDetail from "./src/screens/ShowDetail"
 import Constants from "./src/utils/Constants";
+import TabNavigator from "./src/navigation/TabNavigator"
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,7 @@ export default function App() {
         <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={TabNavigator}
           options={{
             ...headerStyle,
             headerLeft: () => null,
